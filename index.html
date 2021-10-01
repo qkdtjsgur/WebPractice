@@ -1,0 +1,99 @@
+
+<html lang="ko">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<title>선혁 위키 검색</title>
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script src="./data.js"></script>
+<body bgcolor='white' align="left">
+
+  <header>
+  <h1>선혁 위키 문서 간단 검색</h1>
+  </header>
+
+<style>
+.green_window {
+    display: inline-block;
+    width: 500px; height: 34px;
+    border: 3px solid #200400;
+    background: white;
+}
+.input_text {
+    width: 480px; height: 28px;
+    margin: 6px 0 0 9px;
+    border: 0;
+    line-height: 80x;
+    font-weight: normal;
+    font-size: 16px;
+    outline: none;
+}
+.sch_smit {
+    width: 54px; height: 40px;
+    margin: 0; border: 0;
+    vertical-align: top;
+    background: #200400;
+    color: white;
+    font-weight: bold;
+    border-radius: 1px;
+    cursor: pointer;
+}
+.sch_smit:hover {
+    background: #56C82C;
+}
+</style>
+<!-- HTML -->
+<div>
+<span class='green_window'>
+<input id=text type="text" class='input_text' name="search" onkeydown="enterSearch()"/></span>
+<input type="button" class='sch_smit' value="이동" onclick="myFunction()"/>
+</div>
+<!-- JAVASCRIPT -->
+<script type="text/javascript">
+function enterSearch() {
+    if(event.keyCode == 13){
+        myFunction();  // 실행할 이벤트
+    }
+}
+function myFunction() {
+    var x = document.getElementById("text").value;
+    location.href = x+".html"
+		//window.open (x+".html")
+		if (x=="방선혁") {
+			window.open("경고.html", "a", "width=450, height=20w0, left=300, top=200")
+		}
+}
+
+</script>
+<script>
+$(function () {	//화면 로딩후 시작
+		$("#text").autocomplete({  //오토 컴플릿트 시작
+			source: List,	// source는 data.js파일 내부의 List 배열
+			focus : function(event, ui) { // 방향키로 자동완성단어 선택 가능하게 만들어줌
+				return false;
+			},
+			minLength: 1,// 최소 글자수
+			delay: 100,	//autocomplete 딜레이 시간(ms)
+			//disabled: true, //자동완성 기능 끄기
+		});
+	});
+</script>
+</body>
+<body>
+	<details align="right"><summary>검색 꿀팁!</summary>
+	<p align="left"><b>검색할 문서 이름을 입력해 주세요.</b> <br>
+  '입력한 텍스트'+.html 의 문서로 이동하는 방법을 사용하므로 검색할 문서의 원본 파일명(.html) 을 모를경우 검색 할 수 없습니다.</p>
+  <p align="left">원본 파일명은 주로 <b>'사람 이름.html' </b>이나 <b>'줄임말.html'</b>로 이루어져 있습니다.<br>
+</p>
+</details>
+</body>
+</html>
